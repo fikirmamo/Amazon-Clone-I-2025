@@ -1,9 +1,10 @@
 import './App.css'
+import Header from './Components/Header/Header.jsx';
 
 function App() {
   return (
     <>
-      <h1>Amazone colone I</h1>
+      <Header/>
     </>
   );
 }
