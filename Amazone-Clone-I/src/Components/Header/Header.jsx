@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './Header.module.css';
+import {Link} from 'react-router-dom'
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import LowerHeader from "./LowerHeader";
@@ -12,19 +13,19 @@ const Header = () => {
         <div className={styles.header_container}>
           {/* logo section */}
           <div className={styles.logo_container}>
-            <a href="#">
+            <Link to="/">
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
                 alt="amazon logo"
               />
-            </a>
+            </Link>
             {/* delivery */}
             <div className={styles.delivery}>
               <span>
                 <SlLocationPin />
               </span>
               <div>
-                <p>Delivere to</p>
+                <p>Deliver to</p>
                 <span>USA</span>
               </div>
             </div>
@@ -33,9 +34,7 @@ const Header = () => {
           {/* search section */}
           <div className={styles.search}>
             <select name="" id="">
-              <option value="">
-                All
-              </option>
+              <option value="">All</option>
             </select>
             <input type="text" />
             <BsSearch size={25} />
@@ -44,28 +43,28 @@ const Header = () => {
           {/* other section */}
 
           <div className={styles.order_container}>
-            <a href="" className={styles.language}>
+            <Link to="/language-select" className={styles.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"
-                alt=""
+                alt="USA flag"
               />
 
               <select name="" id="">
                 <option value="">EN</option>
               </select>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="SignIn">
               <p>Sign In</p>
               <span>Account & Lists</span>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/Orders">
               <p>returns</p>
               <span>& Orders</span>
-            </a>
-            <a href="" className={styles.cart}>
+            </Link>
+            <Link to="/cart" className={styles.cart}>
               <BiCart size={35} />
               <span>0</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
