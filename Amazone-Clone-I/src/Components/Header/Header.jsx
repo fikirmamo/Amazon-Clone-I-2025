@@ -14,7 +14,7 @@ const Header = () => {
 
 
   return (
-    <>
+    <section className={styles.fixed}>
       <section>
         <div className={styles.header_container}>
           {/* logo section */}
@@ -75,7 +75,7 @@ const Header = () => {
         </div>
       </section>
       <LowerHeader />
-    </>
+    </section>
   );
 };
 
