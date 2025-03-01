@@ -5,13 +5,31 @@ import { DataContext } from "../../Components/DataProvider/DataProvider.jsx";
 import ProductCard from "../../Components/Product/ProductCard.jsx";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat.jsx";
 import { Link } from "react-router-dom";
+import{Type} from '../../Utility/action.type'
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 const Cart = () => {
   const [{basket, user}, dispatch] = useContext(DataContext)
   const total =basket.reduce((amount, item)=>{
     return item.price * item.amount + amount
   }, 0)
-  console.log(basket)
+  // console.log(basket)
+
+  const increment = (item)=>{
+    dispatch({
+      type:Type.ADD_TO_BASKET,
+      item
+    })
+  }
+
+const decrement=(id)=>{
+  dispatch({
+    type:Type.REMOVE_FROM_BASKET,
+    id
+  })
+}
+
   return (
     <LayOut>
       <section className={styles.container}>
@@ -24,14 +42,31 @@ const Cart = () => {
           ) : (
             basket?.map((item, i) => {
               return (
-                <ProductCard
-                  key={i}
-                  product={item}
-                  renderDesc={true}
-                  renderAdd={false}
-                  flex={true}
-                />
-              );
+                <section className={styles.cart_product}>
+                  <ProductCard
+                    key={i}
+                    product={item}
+                    renderDesc={true}
+                    renderAdd={false}
+                    flex={true}
+                  />
+                  <div className={styles.btn_container}>
+                    <button
+                      className={styles.btn}
+                      onClick={() => increment(item)}
+                    >
+                      <IoIosArrowUp size={20} />
+                    </button>
+                    <span>{item.amount}</span>
+                    <button
+                      className={styles.btn}
+                      onClick={() => decrement(item.id)}
+                    >
+                      <IoIosArrowDown size={20} />
+                    </button>
+                  </div>
+                </section>
+              );  //return braket added watch this if there is any error
             })
           )}
         </div>

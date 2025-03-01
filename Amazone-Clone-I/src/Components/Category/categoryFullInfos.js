@@ -8,7 +8,7 @@ export const categoryInfos = [
 
   {
     id: 2,
-    title: "Discover fasion trends",
+    title: "Discover fashion trends",
     name: "women's clothing",
     imgLink: "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
   },
