@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Landing/Landing.jsx";
-import SignIn from "../src/Pages/Auth/Signup.jsx";
+import Auth from "../src/Pages/Auth/Auth.jsx";
 import Payment from "./Pages/Payment/Payment.jsx";
 import Orders from "./Pages/Orders/Orders.jsx";
 import Cart from "./Pages/Cart/Cart.jsx";
@@ -14,12 +14,12 @@ const Routing = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/auth" element={<SignIn />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/payments" element={<Payment />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/category/:categoryName" element={<Results/>} />
-        <Route path="/products/:productId" element={<ProductDetail/>} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/category/:categoryName" element={<Results />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
   );

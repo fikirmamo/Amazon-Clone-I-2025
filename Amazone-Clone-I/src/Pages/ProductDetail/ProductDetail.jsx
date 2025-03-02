@@ -16,9 +16,7 @@ const ProductDetail = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      // .get(`${producturl}/products/${productId}`)
-      //${producturl} replaced by https://fakestoreapi.com/products/
-      .get(`https://fakestoreapi.com/products/${productId}`)
+    .get(`${producturl}/products/${productId}`)
       .then((res) => {
         console.log(res.data);
         setProduct(res.data);

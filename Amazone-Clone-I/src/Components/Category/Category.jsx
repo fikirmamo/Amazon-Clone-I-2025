@@ -8,11 +8,11 @@ import CategoryCard from './CategoryCard.jsx';
 const Category = () => {
   return (
     <section className={styles.Category_container}>
-      {categoryInfos.map((infos) => (
-          <CategoryCard key={infos.id} data={infos}/>
+      {categoryInfos?.map((infos, index) => (
+          <CategoryCard key={index} data={infos}/>
         ))}
     </section>
-  );
+  )
 }
 
 export default Category;
