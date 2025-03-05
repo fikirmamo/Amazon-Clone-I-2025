@@ -5,6 +5,7 @@ import CategoryCard from './CategoryCard.jsx';
 
 
 
+
 const Category = () => {
   return (
     <section className={styles.Category_container}>
