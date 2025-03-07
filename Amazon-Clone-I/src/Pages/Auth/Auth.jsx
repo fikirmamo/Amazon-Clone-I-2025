@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import styles from "./Auth.module.css";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../../Utility/firebase";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import {ClipLoader} from "react-spinners" 
+import { ClipLoader } from "react-spinners";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import { Type } from "../../Utility/action.type";
 
@@ -19,7 +19,9 @@ const Auth = () => {
     signUp: false,
   });
   const [{ user }, dispatch] = useContext(DataContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const navStateData = useLocation();
+  console.log(navStateData);
 
   // console.log(user);
   const authHandler = async (e) => {
@@ -36,12 +38,11 @@ const Auth = () => {
             user: userInfo.user,
           });
           setLoading({ ...loading, signIn: false });
-          navigate("/")
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
           setLoading({ ...loading, signIn: false });
-
         });
     } else {
       setLoading({ ...loading, signUp: true });
@@ -52,13 +53,11 @@ const Auth = () => {
             user: userInfo.user,
           });
           setLoading({ ...loading, signUp: false });
-          navigate("/");
-
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
           setLoading({ ...loading, signUp: false });
-
         });
     }
   };
@@ -75,6 +74,18 @@ const Auth = () => {
       {/* form */}
       <div className={styles.login_container}>
         <h1>Sign In</h1>
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navStateData?.state?.msg}
+          </small>
+        )}
         <form action="">
           <div>
             <label htmlFor="email">Email</label>
@@ -105,8 +116,8 @@ const Auth = () => {
         </form>
         {/* agreement  */}
         <p>
-          By signing in you agree to AMAZONE FAKE CLONE Conditions of Use &
-          Sale. Please see our Privacy Notice, our Cookies Notice and our
+          By signing in you agree to AMAZON FAKE CLONE Conditions of Use & Sale.
+          Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
         {/* creat acount btn */}
@@ -116,7 +127,11 @@ const Auth = () => {
           name="signup"
           className={styles.login_registerButton}
         >
-          {loading.signUp ? <ClipLoader color="#000" size={15} /> : "Create your Amazon Account"}
+          {loading.signUp ? (
+            <ClipLoader color="#000" size={15} />
+          ) : (
+            "Create your Amazon Account"
+          )}
           Creat your Amazon Account
         </button>
         {error && (
