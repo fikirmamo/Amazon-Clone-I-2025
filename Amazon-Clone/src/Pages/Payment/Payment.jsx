@@ -48,12 +48,14 @@ const Payment = () => {
       // console.log(response.data);
       const clientSecret = response.data?.clientSecret;
       // 2. client side (react side confirmation) using stripe
+      // he used const confirmation instead of { paymentIntent }
       const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
       });
-      // console.log(paymentIntent);
+      console.log(paymentIntent);
+      // console.log(confirmation);
 
       // 3. after the confirmation --> order firestore database save, clear the basket
 
